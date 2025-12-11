@@ -1,0 +1,112 @@
+[
+    {
+        "id": 1,
+        "name": "Wave Mini Bluetooth Speaker",
+        "slug": "wave-mini-bluetooth-speaker",
+        "price_eur": 39.99,
+        "description": "Compact Bluetooth speaker with high-quality sound and 10-hour battery life.",
+        "image": "https://img.freepik.com/free-photo/woman-holding-smart-speaker-side-view_23-2149936210.jpg?t=st=1765468063~exp=1765471663~hmac=856e0d541dbb522db858f31078a238fde5f6dd3842a958626c4907f34d8a0624",
+        "category": "Electronics",
+        "in_stock": true,
+        "rating": 2.9
+    },
+    {
+        "id": 2,
+        "name": "AirBass 2 Wireless Earbuds",
+        "slug": "airbass-2-wireless-earbuds",
+        "price_eur": 59.9,
+        "description": "Lightweight wireless earbuds with noise isolation and fast-charging support.",
+        "image": "https://img.freepik.com/premium-photo/modern-wireless-earphones-with-charging-case-yellow-background_175682-19224.jpg",
+        "category": "Electronics",
+        "in_stock": true,
+        "rating": 4.4
+    },
+    {
+        "id": 3,
+        "name": "PulseOne Smartwatch",
+        "slug": "pulseone-smartwatch",
+        "price_eur": 129.0,
+        "description": "Fitness-focused smartwatch with heart-rate monitoring and GPS tracking.",
+        "image": "https://img.freepik.com/premium-photo/closeup-vibrant-fitness-tracker-wrist-monitoring-heart-rate_626475-1423.jpg",
+        "category": "Electronics",
+        "in_stock": false,
+        "rating": 4.2
+    },
+    {
+        "id": 4,
+        "name": "ChargePro 30W USB-C Charger",
+        "slug": "chargepro-30w-charger",
+        "price_eur": 19.99,
+        "description": "Fast USB-C 30W charger compatible with most modern smartphones and tablets.",
+        "image": "https://img.freepik.com/premium-photo/phone-mobile-connect-battery-power-bank_93675-127813.jpg",
+        "category": "Electronics",
+        "in_stock": true,
+        "rating": 4.8
+    },
+    {
+        "id": 5,
+        "name": "HomeGuard Lite Wi-Fi Camera",
+        "slug": "homeguard-lite-wifi-camera",
+        "price_eur": 79.5,
+        "description": "Indoor Wi-Fi camera with motion detection and 1080p video recording.",
+        "image": "https://img.freepik.com/premium-photo/close-up-web-cam-table_1048944-27484761.jpg",
+        "category": "Electronics",
+        "in_stock": true,
+        "rating": 4.5
+    },
+    {
+        "id": 6,
+        "name": "BrightTouch LED Desk Lamp",
+        "slug": "brighttouch-led-desk-lamp",
+        "price_eur": 29.9,
+        "description": "Adjustable LED desk lamp with 3 brightness modes and touch control.",
+        "image": "https://images.unsplash.com/photo-1524758631624-e2822e304c36",
+        "category": "Electronics",
+        "in_stock": true,
+        "rating": 4.3
+    },
+    {
+        "id": 7,
+        "name": "PureAir Mini Air Purifier",
+        "slug": "pureair-mini-air-purifier",
+        "price_eur": 89.0,
+        "description": "Compact air purifier with HEPA filter suitable for small rooms and offices.",
+        "image": "https://img.freepik.com/premium-photo/close-up-potted-plant-table-home_1048944-29831392.jpg",
+        "category": "Electronics",
+        "in_stock": true,
+        "rating": 4.7
+    },
+    {
+        "id": 8,
+        "name": "ThermoGo Smart Mug",
+        "slug": "thermogo-smart-mug",
+        "price_eur": 34.99,
+        "description": "Smart temperature-controlled mug that keeps your drink warm for hours.",
+        "image": "https://img.freepik.com/premium-photo/woman-holding-reusable-coffee-cup-outdoors-autumn_77190-28581.jpg",
+        "category": "Electronics",
+        "in_stock": false,
+        "rating": 4.1
+    },
+    {
+        "id": 9,
+        "name": "KeyMax 87 Mechanical Keyboard",
+        "slug": "keymax-87-mechanical-keyboard",
+        "price_eur": 89.99,
+        "description": "Tenkeyless mechanical keyboard designed for productivity and gaming.",
+        "image": "https://images.unsplash.com/photo-1517336714731-489689fd1ca8",
+        "category": "Electronics",
+        "in_stock": true,
+        "rating": 4.9
+    },
+    {
+        "id": 10,
+        "name": "ErgoGrip S Ergonomic Mouse",
+        "slug": "ergogrip-s-ergonomic-mouse",
+        "price_eur": 39.5,
+        "description": "Ergonomic mouse reducing wrist strain with adjustable DPI sensitivity.",
+        "image": "https://img.freepik.com/premium-photo/woman-hand-using-computer-ergonomic-mouse-prevention-wrist-pain-because-working-long-time-de-quervain-s-tenosynovitis-intersection-symptom-carpal-tunnel-syndrome-office-syndrome-concept_42256-9131.jpg",
+        "category": "Electronics",
+        "in_stock": true,
+        "rating": 4.4
+    }
+]
