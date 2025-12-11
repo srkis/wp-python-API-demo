@@ -20,6 +20,7 @@ Fully JSON-based storage (no database needed)
 Easy integration with WordPress or any frontend/backend system
 
 📂 Project Structure
+
 python-api-demo/
 │── app.py                # Main FastAPI application
 │── products.json         # Product database (JSON)
