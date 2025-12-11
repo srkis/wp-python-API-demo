@@ -1,253 +1,250 @@
-📘 Python Products API – README
+📘 Python Products API
 
-1. Overview
+Lightweight FastAPI application for serving product data to external services (e.g., WordPress plugin).
+Products are stored in a local products.json file and exposed through secure HTTP endpoints.
 
-This is a lightweight Python-based API used for serving electronic products to a WordPress plugin.
-The API:
+🚀 Features
 
-- Reads product data from products.json
+Read products from products.json
 
-- Exposes product data through secure HTTP endpoints
+Return all products or single product by ID
 
-- Requires a secret API token
+Add new products via POST request
 
-- Allows fetching:
+Token-based authentication (?token=YOUR_SECRET)
 
-  - all products
+Rate-limited endpoints
 
-  - a single product by ID
+Fully JSON-based storage (no database needed)
 
-  - (Optional) Allows adding new products via POST and updating products.json
+Easy integration with WordPress or any frontend/backend system
 
-The WordPress plugin communicates with this API using GET and POST requests.
-
-2. Project Structure
-```
+📂 Project Structure
 python-api-demo/
-│── app.py
-│── products.json
-│── requirements.txt
-│── README.md
-│── venv/ (optional)
-```
+│── app.py                # Main FastAPI application
+│── products.json         # Product database (JSON)
+│── requirements.txt      # Python dependencies
+│── README.md             # Documentation
+└── venv/                 # Optional: Virtual environment (NOT included in repo)
 
-3. Requirements
+🛠 Requirements
 
-Your system must have:
+You need:
 
-- Python 3.10+
+Python 3.10+
 
-- pip (Python package manager)
+pip
 
-4. Install Dependencies
+(recommended) Virtual environment (venv)
 
-Inside the python-api-demo folder run:
+⚡ Quick Start
+1️⃣ Clone repository
+git clone https://github.com/USERNAME/python-api-demo.git
+cd python-api-demo
 
-```bash
-pip install -r requirements.txt
-```
+2️⃣ Create & activate virtual environment
 
-This installs:
+💡 Virtual environment is NOT inside the repo. You must create it manually.
 
-- FastAPI
+Linux / MacOS:
 
-- uvicorn
-
-- Python libraries for JSON file manipulation
-
-5. Creating & Activating a Virtual Environment
-Create venv:
-
-```bash
 python3 -m venv venv
-```
-
-Activate venv (Linux/MacOS):
-
-```bash
 source venv/bin/activate
-```
 
-Activate venv (Windows):
 
-```powershell
+Windows (PowerShell):
+
+python -m venv venv
 venv\Scripts\activate
-```
 
-If `venv/bin/activate` gives "No such file or directory", you probably created venv in a different folder.
-Make sure you create it inside the `python-api-demo` folder.
+3️⃣ Install dependencies
+pip install -r requirements.txt
 
-6. Running the API Server
+4️⃣ Run API server
+uvicorn app:app --host 0.0.0.0 --port 8000 --reload
 
-Start the application with:
 
-```bash
-uvicorn app:app --host 0.0.0.0 --port 8000
-```
+API now runs at:
 
-Now the API is available at:
+👉 http://127.0.0.1:8000/
 
-http://127.0.0.1:8000/
+🔐 Authentication: API Token
 
-7. Authentication – API Token
+Every request must include a valid token:
 
-All endpoints require a token:
+?token=MY_SECRET_TOKEN_123
 
-`?token=MY_SECRET_TOKEN_123`
 
-If the token is missing or incorrect, the API responds with:
+If missing or invalid, server returns:
 
-```json
 { "detail": "Invalid API token" }
-```
 
-8. Endpoints
+
+Token is defined inside app.py.
+
+📡 Endpoints
 GET /products
 
-Returns all products from products.json.
+Returns all products.
 
-Example Request:
-`GET /products?token=MY_SECRET_TOKEN_123`
+Example:
 
-Example Response:
-```json
+GET /products?token=MY_SECRET_TOKEN_123
+
+
+Response:
+
 [
   {
     "id": 1,
     "name": "Gaming Laptop X15",
     "price": 1200.99,
-    "image": "https://placehold.co/600x400?text=Laptop",
+    "image": "https://example.com/laptop.jpg",
     "stock": 30
   }
 ]
-```
 
 GET /product/{id}
 
-Returns a single product by its ID.
+Returns single product.
 
-Example Request:
-`GET /product/2?token=MY_SECRET_TOKEN_123`
+Example:
 
-Example Response:
-```json
+GET /product/2?token=MY_SECRET_TOKEN_123
+
+
+Response:
+
 {
   "id": 2,
   "name": "4K OLED Monitor",
   "price": 899.50,
-  "image": "https://placehold.co/600x400?text=Monitor",
+  "image": "https://example.com/monitor.jpg",
   "stock": 12
 }
-```
 
-If product doesn’t exist:
 
-```json
+If product not found:
+
 { "detail": "Product not found" }
-```
 
 POST /product/add
 
-Adds a new product into products.json.
+Adds new product to products.json.
 
-Example Request:
-`POST /product/add?token=MY_SECRET_TOKEN_123`
+Request:
+
+POST /product/add?token=MY_SECRET_TOKEN_123
 Content-Type: application/json
 
-JSON Body:
-```json
+
+Body:
+
 {
   "name": "Wireless Gaming Mouse",
   "price": 49.99,
-  "image": "https://placehold.co/600x400?text=Mouse",
+  "image": "https://example.com/mouse.jpg",
   "stock": 100
 }
-```
 
-Example Response:
-```json
+
+Response:
+
 {
   "detail": "Product added",
   "product_id": 7
 }
-```
 
-The API automatically assigns a new ID
-(max existing ID + 1).
 
-9. JSON File Format (products.json)
-```json
+The server automatically assigns id = highest existing + 1.
+
+📁 JSON File Format
+
+Example structure of products.json:
+
 [
   {
     "id": 1,
     "name": "Gaming Laptop X15",
     "price": 1200.99,
-    "image": "https://placehold.co/600x400?text=Laptop",
+    "image": "https://example.com/laptop.jpg",
     "stock": 30
   }
 ]
-```
 
-10. Using the API from WordPress Plugin
-
-Your WP plugin uses:
-
-- `wp_remote_get()` for GET endpoints
-
-- `wp_remote_post()` for POST
-
-Example (GET all products):
-```php
-$response = wp_remote_get(
-    "http://127.0.0.1:8000/products?token=" . $token
-);
-```
-
-Example (POST new product):
-```php
-$response = wp_remote_post(
-    "http://127.0.0.1:8000/product/add?token=" . $token,
-    [
-        'headers' => ['Content-Type' => 'application/json'],
-        'body'    => json_encode($data)
-    ]
-);
-```
-
-11. Testing the API Manually
+🧪 Testing the API
 Browser:
-`http://127.0.0.1:8000/products?token=MY_SECRET_TOKEN_123`
+http://127.0.0.1:8000/products?token=MY_SECRET_TOKEN_123
 
 cURL:
-```bash
 curl "http://127.0.0.1:8000/product/1?token=MY_SECRET_TOKEN_123"
-```
 
 Postman:
 
-Create GET or POST request
+Method: GET or POST
 
-Add `?token=YOUR_TOKEN`
+URL: /products or /product/add
 
-For POST: set JSON body
+Add token as query param
 
-12. Notes
+POST requires JSON body
 
-✔ Always keep your token secret
-✔ Do not expose API publicly without extra security
-✔ products.json must have valid JSON format
+🔧 Troubleshooting
+❌ Error: “Address already in use”
 
-13. Troubleshooting
-❌ venv/bin/activate – No such file or directory
-
-Likely caused by running the command in the wrong folder.
-
+Port 8000 is already busy.
 Run:
 
-```bash
+sudo lsof -i :8000
+sudo kill -9 PID
+
+
+Or start API on another port:
+
+uvicorn app:app --port 8001
+
+❌ venv/bin/activate: No such file or directory
+
+You created venv in the wrong folder.
+
+Check:
+
 ls
-```
 
-Make sure you SEE the `venv/` folder.
 
-If not, create it again in the correct folder.
+If venv/ is missing → create it again.
+
+🔐 Security Notes
+
+Do NOT expose this API publicly without HTTPS
+
+Token should be long, random, and secret
+
+Add CORS rules if used on public websites
+
+Rate limit is enabled (5/minute)
+
+🤝 Integration With WordPress Plugin
+
+The WP plugin uses:
+
+wp_remote_get() for fetching products
+
+wp_remote_post() for adding products
+
+Example GET:
+
+$response = wp_remote_get(
+    "http://127.0.0.1:8000/products?token=$token"
+);
+
+
+Example POST:
+
+$response = wp_remote_post(
+    "http://127.0.0.1:8000/product/add?token=$token",
+    [
+        'headers' => ['Content-Type' => 'application/json'],
+        'body' => json_encode($data)
+    ]
+);
